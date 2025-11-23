@@ -68,7 +68,7 @@ This simulator implements and demonstrates the following features from the PACT 
 - Traverses version chains to find correct node version
 - Returns associated value or None if not found
 
-#### ⏳ **7. Range Queries**
+#### ✅ **7. Range Queries**
 - Query all keys within a range [lower_bound, upper_bound)
 - Linearizable multipoint queries
 - Supports snapshot-based range queries
@@ -82,18 +82,19 @@ This simulator implements and demonstrates the following features from the PACT 
 - Handles node splitting (simplified)
 - Supports both in-place and out-of-place strategies
 
-#### ⏳ **9. Delete/Erase Operations**
+#### ✅ **9. Delete/Erase Operations**
 - Remove keys from the tree
 - Version-aware deletion
-- Concurrent delete and find operations
-- Memory reclamation for deleted nodes
+- Supports both in-place and out-of-place strategies
+- Historical queries can still see erased keys in old snapshots
 
 ### Concurrency and Correctness
 
-#### ⏳ **10. Linearizability Guarantee**
+#### ✅ **10. Linearizability Guarantee**
 - Ensures concurrent operations appear to execute atomically
 - Snapshot-based queries provide consistent views
 - Demonstrates how versioning enables linearizable multipoint queries
+- Range queries on snapshots return consistent results
 
 #### ⏳ **11. Concurrent Operations Simulation**
 - Simulate concurrent insertions and queries
@@ -121,56 +122,78 @@ This simulator implements and demonstrates the following features from the PACT 
 - Allows traversal to continue even when nodes are split
 - Enables lock-free concurrent operations
 
-#### ⏳ **15. Statistics and Metrics**
+#### ✅ **15. Statistics and Metrics**
 - Track number of versions per node
-- Memory overhead measurement
-- Operation counts and rates
+- Total nodes, keys, and tree height
 - Snapshot statistics
 - Version chain length statistics
+- Real-time metrics dashboard in web app
 
 ### Visualization and Analysis
 
-#### ⏳ **16. Tree Visualization**
-- Visual representation of tree structure
+#### ✅ **16. Tree Visualization**
+- Text-based visual representation of tree structure
 - Show version chains for each node
-- Highlight active versions for queries
-- Graph-based tree visualization
+- Display node types (Leaf/Internal) and timestamps
+- View tree at current state or specific snapshots
 
-#### ⏳ **17. Comparison Mode**
+#### ✅ **17. Comparison Mode**
 - Compare multiversion B-Tree with regular B-Tree
-- Performance comparison (operation counts)
-- Memory overhead comparison
-- Feature comparison
+- Side-by-side feature comparison
+- Demonstrates advantages of multiversion approach
+- Shows limitations of regular B-Tree
+- Interactive comparison in web application
 
-#### ⏳ **18. Interactive Demo Mode**
-- Step-by-step operation execution
+#### ✅ **18. Education Mode**
+- Step-by-step operation explanations
 - Show what happens during each operation
-- Educational explanations
+- Educational explanations of paper concepts
+- Interactive tutorial with 6 steps
+- Concept learning panel
 - Operation history tracking
+- Detailed version chain analysis
 
 ## Implementation Status
 
 ### ✅ Implemented (Current)
-- Basic multiversion B-Tree structure
-- Node versioning with version chains
-- Snapshot functionality
-- Insert operations (with versioning)
-- Point queries (find) - current and snapshot-based
-- In-place and out-of-place update strategies
-- Version chain traversal
-- CLI interface for testing
-- Basic test suite
+- **Core Data Structure:**
+  - Multiversion B-Tree structure with configurable branching factor
+  - Node versioning with version chains
+  - Snapshot functionality with timestamp management
+  - Version chain traversal for historical queries
+
+- **Operations:**
+  - Insert operations (with in-place and out-of-place strategies)
+  - Find operations (point queries) - current and snapshot-based
+  - Erase/Delete operations (with versioning support)
+  - Range queries (multipoint queries) - current and snapshot-based
+  - Snapshot creation and management
+
+- **Interfaces:**
+  - CLI interface (`main.py`) for command-line testing
+  - Streamlit web application (`app.py`) with interactive UI
+  - Basic test suite (`tests/test_basic.py`)
+
+- **Features:**
+  - Education Mode with detailed explanations and interactive tutorial
+  - Comparison Mode (Multiversion B-Tree vs Regular B-Tree)
+  - Tree visualization (text-based)
+  - Statistics and metrics dashboard
+  - Operation history tracking
+  - Snapshot comparison
+  - Regular B-Tree implementation for comparison
 
 ### ⏳ Planned (Future Enhancements)
-- Range queries
-- Delete/erase operations
-- Concurrent operations simulation
-- Memory reclamation (EBR) simulation
-- Tree visualization
-- Statistics and metrics dashboard
-- Comparison with regular B-Tree
-- Interactive demo mode
-- Advanced snapshot scopes
+- **Advanced Concurrency:**
+  - Concurrent operations simulation (threading)
+  - Epoch-Based Reclamation (EBR) simulation
+  - Side-links for concurrent traversal
+
+- **Advanced Features:**
+  - Graphical tree visualization (D3.js or similar)
+  - Advanced snapshot scopes (host-side, stream-concurrent, tile-wide)
+  - Enhanced statistics dashboard with memory overhead measurement
+  - Operation rate tracking and performance metrics
 
 ## Requirements
 
@@ -205,12 +228,14 @@ run_app.bat
 The app will open in your default web browser at `http://localhost:8501`
 
 **Features of the Web App:**
-- 🌳 Interactive tree visualization
-- 🔧 Insert, Find, and Snapshot operations
+- 🌳 Interactive tree visualization (text-based)
+- 🔧 Insert, Find, Erase, Range Query, and Snapshot operations
 - 📸 Snapshot management and comparison
 - 📈 Real-time statistics dashboard
-- 🔗 Version chain visualization
+- 🔗 Version chain visualization and analysis
 - 📜 Operation history tracking
+- 📚 Education Mode with detailed explanations and interactive tutorial
+- ⚖️ Comparison Mode (Multiversion vs Regular B-Tree)
 
 ### Run Tests
 ```bash

@@ -53,16 +53,22 @@ mvbtree_simulator/
 ✅ Basic B-Tree structure with versioning
 ✅ Insert operations (with versioning)
 ✅ Find operations (current and snapshot-based)
+✅ Erase/Delete operations (with versioning)
+✅ Range queries (current and snapshot-based)
 ✅ Snapshot functionality
 ✅ Version chain traversal
 ✅ CLI interface for testing
+✅ Streamlit web application with interactive UI
+✅ Education Mode with explanations
+✅ Comparison Mode (Multiversion vs Regular B-Tree)
+✅ Tree visualization (text-based)
+✅ Statistics and metrics dashboard
 
 ## Next Steps (Future Enhancements)
 
-- Range queries
-- Delete operations
-- Tree visualization (graphical)
-- Comparison with regular B-Tree
-- Statistics and metrics
-- Concurrent operations simulation
+- Graphical tree visualization (D3.js or similar)
+- Concurrent operations simulation (threading)
+- Epoch-Based Reclamation (EBR) simulation
+- Advanced snapshot scopes
+- Enhanced performance metrics
 

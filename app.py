@@ -934,8 +934,13 @@ def main():
         - ✅ Node versioning with version chains
         - ✅ Snapshot functionality for historical queries
         - ✅ In-place (ViB-Tree) and out-of-place (VoB-Tree) updates
-        - ✅ Point queries with snapshot support
+        - ✅ Point queries (Find) with snapshot support
+        - ✅ Range queries with snapshot support
+        - ✅ Erase/Delete operations with versioning
         - ✅ Version chain traversal
+        - ✅ Education Mode with detailed explanations
+        - ✅ Comparison Mode (Multiversion vs Regular B-Tree)
+        - ✅ Statistics and metrics dashboard
         
         **How to Use:**
         1. Enable Education Mode to see detailed explanations
